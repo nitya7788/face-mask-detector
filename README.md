@@ -1,151 +1,161 @@
-<<<<<<< HEAD
-# 😷 Face Mask Detector — Complete Project
+# Face Mask Detector
 
-## 📁 Project Structure
+A real-time face mask detection system built using Deep Learning and Computer Vision. The model detects whether a person is wearing a face mask or not — from a live webcam feed or uploaded image.
+
+---
+
+##  Project Overview
+
+This project fine-tunes a pre-trained **MobileNetV2** model on a labeled face mask dataset using Transfer Learning. It achieves **99% test accuracy** with high precision and recall on both classes.
+
+---
+
+##  Model Performance
+
+| Metric | With Mask | Without Mask |
+|--------|-----------|--------------|
+| Precision | 0.98 | 0.99 |
+| Recall | 0.99 | 0.98 |
+| F1-Score | 0.99 | 0.99 |
+| **Overall Accuracy** | **99%** | — |
+
+> Evaluated on 1,511 test images from a dataset of 7,500+ labeled images.
+
+---
+
+## Tech Stack
+
+| Purpose | Tool |
+|---|---|
+| Language | Python 3.11 |
+| Deep Learning | TensorFlow / Keras |
+| Pre-trained Model | MobileNetV2 (ImageNet weights) |
+| Computer Vision | OpenCV |
+| Data Processing | NumPy, Scikit-learn |
+| Web App | Streamlit |
+| Visualization | Matplotlib |
+
+---
+
+##  Features
+
+-  Real-time webcam-based mask detection
+-  Image upload detection via Streamlit web app
+-  Bounding boxes with confidence scores on each detected face
+-  Transfer Learning with frozen MobileNetV2 base
+-  Data augmentation for better generalization
+-  Deployed as a live web app (no local setup needed)
+
+---
+
+##  Project Structure
+
 ```
 face_mask_detector/
 ├── dataset/
-│   ├── with_mask/       ← ~3800 images from Kaggle
-│   └── without_mask/    ← ~3800 images from Kaggle
-├── train_model.py       ← STEP 1: Train the model
-├── detect_mask.py       ← STEP 2: Webcam real-time detection
-├── app.py               ← STEP 3: Streamlit web app
-├── mask_detector.model  ← Auto-generated after training
-└── training_plot.png    ← Auto-generated after training
+│   ├── with_mask/          # ~3,800 images
+│   └── without_mask/       # ~3,800 images
+├── train_model.py          # Model training script
+├── detect_mask.py          # Real-time webcam detection
+├── app.py                  # Streamlit web app
+├── mask_detector.h5        # Saved trained model
+├── training_plot.png       # Accuracy & loss curves
+└── requirements.txt        # Dependencies
 ```
 
 ---
 
-## 🎓 What Topics Each File Teaches You
+##  How to Run Locally
 
-### train_model.py
-| Code Section | Topic to Learn |
-|---|---|
-| `import numpy, matplotlib` | Python Libraries |
-| `train_test_split` | ML Concepts: Overfitting, Train-Test Split |
-| `LabelBinarizer` | Label Encoding |
-| `ImageDataGenerator` | Data Augmentation |
-| `MobileNetV2(weights="imagenet")` | Transfer Learning, CNNs |
-| `layer.trainable = False` | Freezing Layers |
-| `Dense, Dropout, Flatten` | Neural Network Architecture |
-| `model.compile(optimizer, loss)` | Gradient Descent, Loss Functions |
-| `model.fit(...)` | Model Training, Epochs, Batch Size |
-| `model.save(...)` | Saving/Loading Models |
-
-### detect_mask.py
-| Code Section | Topic to Learn |
-|---|---|
-| `cv2.VideoCapture(0)` | OpenCV: Webcam Access |
-| `cv2.cvtColor(...)` | Color Spaces (BGR, RGB, Gray) |
-| `face_detector.detectMultiScale(...)` | Face Detection, Haar Cascades |
-| `np.expand_dims(...)` | NumPy Array Shapes |
-| `model.predict(...)` | Model Inference |
-| `cv2.rectangle, cv2.putText` | Drawing on Images |
-
-### app.py
-| Code Section | Topic to Learn |
-|---|---|
-| `st.file_uploader` | File I/O with Streamlit |
-| `@st.cache_resource` | Caching, App Performance |
-| `Image.open(...)` | PIL/Pillow Library |
-| `np.array(pil_image)` | Image → NumPy Conversion |
-| Full pipeline | Model Deployment |
-
----
-
-## 🚀 How to Run
-
-### Step 1 — Download Dataset
-1. Go to: https://www.kaggle.com/datasets/omkargurav/face-mask-dataset
-2. Download and unzip into `dataset/` folder
-3. Make sure you have `dataset/with_mask/` and `dataset/without_mask/`
-
-### Step 2 — Install Dependencies
+### 1. Clone the Repository
 ```bash
-pip install tensorflow keras opencv-python numpy matplotlib streamlit pillow scikit-learn
+git clone https://github.com/nitya7788/face-mask-detector.git
+cd face-mask-detector
 ```
 
-### Step 3 — Train the Model
+### 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Train the Model
 ```bash
 python train_model.py
 ```
-*(Takes 5–15 minutes depending on your machine)*
 
-### Step 4 — Run Webcam Detection
+### 4. Run Webcam Detection
 ```bash
 python detect_mask.py
 ```
-*Press Q to quit*
+Press **Q** to quit.
 
-### Step 5 — Launch Web App
+### 5. Launch Web App
 ```bash
 streamlit run app.py
 ```
-*Opens in browser at http://localhost:8501*
+Opens at `http://localhost:8501`
 
 ---
 
-## 📚 Learning Roadmap (Do in This Order)
-
-### Week 1 — Python Foundations
-- [ ] Lists, loops, functions, dictionaries
-- [ ] NumPy basics: arrays, shapes, indexing
-- [ ] Matplotlib: plotting graphs
-
-### Week 2 — OpenCV
-- [ ] Reading images and video
-- [ ] Color spaces (BGR vs RGB vs Grayscale)
-- [ ] Drawing shapes and text on images
-- [ ] Face detection with Haar Cascades
-
-### Week 3 — ML & Deep Learning Concepts
-- [ ] What is Machine Learning?
-- [ ] Classification vs Regression
-- [ ] Train/Test split, overfitting
-- [ ] What is a Neural Network? (Watch 3Blue1Brown series)
-- [ ] What is a CNN? Why for images?
-- [ ] Transfer Learning concept
-
-### Week 4 — Keras / TensorFlow
-- [ ] Building a Sequential model
-- [ ] Dense, Dropout, Flatten layers
-- [ ] model.compile() — loss functions, optimizers
-- [ ] model.fit() — training
-- [ ] model.predict() — inference
-- [ ] model.save() / load_model()
-
-### Week 5 — Project Build
-- [ ] Train the model (train_model.py)
-- [ ] Test on webcam (detect_mask.py)
-- [ ] Deploy web app (app.py)
-
-### Week 6 — Polish for Resume
-- [ ] Push to GitHub with clean README
-- [ ] Deploy on Streamlit Cloud (free)
-- [ ] Note accuracy achieved in resume bullet point
-
----
-
-## 📝 How to Write This on Your Resume
+## How It Works
 
 ```
-Face Mask Detection System                          [GitHub Link] [Live Demo Link]
-- Built an end-to-end real-time face mask detector using MobileNetV2 (Transfer Learning)
-- Trained on 7,500+ images achieving ~98% accuracy on test set
-- Integrated OpenCV for webcam-based real-time detection
-- Deployed as an interactive web application using Streamlit
-Tech Stack: Python, TensorFlow/Keras, OpenCV, NumPy, Streamlit
+Input (Webcam / Image)
+        ↓
+Face Detection (OpenCV Haar Cascade)
+        ↓
+Face Region Cropped & Resized to 224×224
+        ↓
+MobileNetV2 Feature Extraction
+        ↓
+Custom Dense Layers → Binary Classification
+        ↓
+Output: Mask ✅ or No Mask ❌ + Confidence Score
 ```
 
 ---
 
-## 🔗 Free Resources
-- **NumPy**: https://numpy.org/learn/
-- **OpenCV**: https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html
-- **3Blue1Brown Neural Networks**: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
-- **Keras Docs**: https://keras.io/guides/
-- **Streamlit Docs**: https://docs.streamlit.io/
-- **Dataset**: https://www.kaggle.com/datasets/omkargurav/face-mask-dataset
-=======
-# face-mask-detector
->>>>>>> 1b6196145171a229c147af74e0cd9722e8e4321f
+## Training Results
+
+- **Dataset:** 7,500+ images (with_mask / without_mask)
+- **Train/Test Split:** 80% / 20%
+- **Epochs:** 10
+- **Final Train Accuracy:** ~100%
+- **Final Validation Accuracy:** 98.54%
+- **Test Accuracy:** 99%
+
+![Training Plot](training_plot.png)
+
+---
+
+## Key Concepts Used
+
+- Transfer Learning (MobileNetV2 pre-trained on ImageNet)
+- Convolutional Neural Networks (CNNs)
+- Data Augmentation (rotation, zoom, flip)
+- Binary Classification (sigmoid output)
+- OpenCV face detection (Haar Cascades)
+- Model deployment with Streamlit
+
+---
+
+##  Dataset
+
+Dataset used: [Face Mask Dataset — Kaggle](https://www.kaggle.com/datasets/omkargurav/face-mask-dataset)
+
+~7,500 images split into two classes:
+- `with_mask` — 3,725 images
+- `without_mask` — 3,828 images
+
+---
+
+##  Author
+
+**Nitya Singh**  
+GitHub: [@nitya7788](https://github.com/nitya7788)
+
+---
+
+##  License
+
+This project is open source and available under the [MIT License](LICENSE).
