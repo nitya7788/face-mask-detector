@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 😷 Face Mask Detector — Complete Project
 
 ## 📁 Project Structure
@@ -145,3 +146,6 @@ Tech Stack: Python, TensorFlow/Keras, OpenCV, NumPy, Streamlit
 - **Keras Docs**: https://keras.io/guides/
 - **Streamlit Docs**: https://docs.streamlit.io/
 - **Dataset**: https://www.kaggle.com/datasets/omkargurav/face-mask-dataset
+=======
+# face-mask-detector
+>>>>>>> 1b6196145171a229c147af74e0cd9722e8e4321f
